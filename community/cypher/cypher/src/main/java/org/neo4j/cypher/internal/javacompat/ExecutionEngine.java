@@ -82,6 +82,9 @@ public class ExecutionEngine implements QueryExecutionEngine
     {
         try
         {
+            QueryObject obj = new QueryObject();
+            System.out.println(obj);
+            System.out.println(query);
             return inner.execute( query, parameters, context, false );
         }
         catch ( CypherException e )
@@ -116,3 +119,12 @@ public class ExecutionEngine implements QueryExecutionEngine
         return inner.clearQueryCaches();
     }
 }
+
+class QueryObject
+{
+    QueryObject()
+    {
+        System.out.println("QueryObject constructor ");
+    }
+}
+
