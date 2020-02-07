@@ -82,10 +82,15 @@ public class ExecutionEngine implements QueryExecutionEngine
     {
         try
         {
-            QueryObject obj = new QueryObject();
-            System.out.println(obj);
+            QueryStartObject obj1 = new QueryStartObject();
+            System.out.println(obj1);
             System.out.println(query);
-            return inner.execute( query, parameters, context, false );
+            System.out.println(parameters);
+            System.out.println(context);
+            Result executeResult = inner.execute( query, parameters, context, false );
+            QueryEndObject obj2 = new QueryEndObject();
+            System.out.println(obj2);
+            return executeResult;
         }
         catch ( CypherException e )
         {
@@ -120,11 +125,18 @@ public class ExecutionEngine implements QueryExecutionEngine
     }
 }
 
-class QueryObject
+class QueryStartObject
 {
-    QueryObject()
+    QueryStartObject()
     {
-        System.out.println("QueryObject constructor ");
+        System.out.println("QueryStartObject constructor ");
     }
 }
 
+class QueryEndObject
+{
+    QueryEndObject()
+    {
+        System.out.println("QueryEndObject constructor ");
+    }
+}

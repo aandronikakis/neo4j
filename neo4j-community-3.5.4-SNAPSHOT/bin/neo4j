@@ -415,8 +415,8 @@ setup_java_opts() {
 
 assemble_command_line() {
   #retval=("${JAVA_CMD}" "-cp" "${CLASSPATH}" "${JAVA_OPTS[@]}" "-Dfile.encoding=UTF-8" "${MAIN_CLASS}" \
-  ############ maxine ###########
-  retval=("maxvm" "-Xbootclasspath/p:$MAXINE_HOME/lib/jnumautils-0.1-SNAPSHOT.jar" "-Xmx16g" "-Xms16g"  "-XX:+AllocationProfilerAll" "-XX:FlareObject=QueryObject" "-XX:FlareObjectPolicyThreshold=19000" "-XX:FlareObjectPolicyProfileWindow=2" "-XX:BufferSize=50000000" "-cp" "${CLASSPATH}" "${JAVA_OPTS[@]}" "-Dfile.encoding=UTF-8" "${MAIN_CLASS}" \
+  ############ maxine ###########  "-XX:+NUMAProfilerVerbose" "-XX:AllocationProfilerFlareProfileWindow=1"
+  retval=("maxvm" "-Xmx1g" "-Xms1g" "-XX:+NUMAProfilerVerbose" "-XX:+NUMAProfilerIsolateDominantThread" "-XX:NUMAProfilerFlareObjectStart=QueryStartObject" "-XX:NUMAProfilerFlareObjectEnd=QueryEndObject" "-XX:NUMAProfilerFlareAllocationThresholds=9000,13000,15000,17000,19000" "-XX:NUMAProfilerBufferSize=50000000" "-cp" "${CLASSPATH}" "${JAVA_OPTS[@]}" "-Dfile.encoding=UTF-8" "${MAIN_CLASS}" \
           "--home-dir=${NEO4J_HOME}" "--config-dir=${NEO4J_CONF}")
 }
 
